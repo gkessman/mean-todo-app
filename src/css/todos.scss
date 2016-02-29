@@ -1,0 +1,28 @@
+.todos {
+	&-input {
+		margin: 0 auto 5px;
+		width: 300px;
+	}
+
+	&-btn {
+		display: block;
+		margin: 0 auto 20px;
+	}
+
+	&-task {
+		&-completed {
+			text-decoration: line-through;
+		}
+	}
+
+	&-update-input {
+		margin: 0 auto;
+		width: 300px;
+	}
+
+}
+
+th, td {
+	font-size: 20px;
+	text-align: center;
+}
