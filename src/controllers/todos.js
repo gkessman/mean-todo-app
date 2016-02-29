@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope) {
+export default function($scope, todoFactory) {
 
 	let params = {
 		createHasInput: false
@@ -19,43 +19,20 @@ export default function($scope) {
 		}
 	];
 
-	$scope.onCompletedClick = todo => {
-		todo.isCompleted = !todo.isCompleted;
-	};
+	const { createTask, updateTask, deleteTask, onCompletedClick, onEditClick, onCancelClick } = todoFactory;
 
-	$scope.onEditClick = todo => {
-		todo.updatedTask = todo.task;
-		todo.isEditing = true;
-	};
+	$scope.createTask = _.partial(createTask, $scope, params);
 
-	$scope.onCancelClick = todo => {
-		todo.isEditing = false;
-	};
+	$scope.updateTask = _.partial(updateTask);
 
-	$scope.createTask = () => {
-		params.createHasInput = false;
-		$scope.createTaskInput = '';
-	};
+	$scope.deleteTask = _.partial(deleteTask, $scope);
 
-	$scope.updateTask = todo => {
-		todo.task = todo.updatedTask;
-		todo.isEditing = false;
-	};
+	$scope.onCompletedClick = _.partial(onCompletedClick);
 
-	$scope.deleteTask = todoToDelete => {
-		_.remove($scope.todos, todo => todo.task === todoToDelete.task)
-	};
+	$scope.onEditClick = _.partial(onEditClick);
 
-	$scope.$watch('createTaskInput', val => {
-		if (!val && params.createHasInput) {
-			$scope.todos.pop();
-			params.createHasInput = false;
-		} else if (val && !params.createHasInput) {
-			$scope.todos.push({ task: val, isCompleted: false });
-			params.createHasInput = true;
-		} else if (val && params.createHasInput) {
-			$scope.todos[$scope.todos.length - 1].task = val;
-		}
-	});
+	$scope.onCancelClick = _.partial(onCancelClick);
+
+	$scope.$watch('createTaskInput', _.partial(todoFactory.watchCreateTaskInput, $scope, params));
 
 }
