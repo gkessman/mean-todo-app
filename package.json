@@ -2,7 +2,7 @@
   "name": "nodemap",
   "version": "0.0.1",
   "scripts": {
-    "start": "NODE_PATH=$NODE_PATH:./scr node server",
+    "start": "NODE_PATH=$NODE_PATH:./src node server",
     "dev": "npm start & webpack-dev-server --progress --colors"
   },
   "dependencies": {
@@ -13,7 +13,9 @@
     "express": "*",
     "jade": "*",
     "jquery": "~2.2.1",
-    "lodash": "^4.5.1"
+    "kerberos": "0.0.18",
+    "lodash": "^4.5.1",
+    "mongoose": "^4.4.5"
   },
   "devDependencies": {
     "webpack-dev-server": "~1.14.1",
