@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 
 routes(app);
 
+// TODO: add index.jade file to remove inline html code
+
 app.all('/*', function(req, res) {
 	res.send('\
 		<!DOCTYPE html>\

@@ -6,19 +6,6 @@ export default function($scope, todoFactory) {
 		createHasInput: false
 	};
 
-	// $scope.todos = [
-	// 	{
-	// 		task: 'do dishes',
-	// 		isCompleted: false,
-	// 		isEditing: false
-	// 	},
-	// 	{
-	// 		task: 'walk dog',
-	// 		isCompleted: true,
-	// 		isEditing: false
-	// 	}
-	// ];
-
 	todoFactory.getTasks($scope);
 
 	const { createTask, updateTask, deleteTask, onCompletedClick, onEditClick, onCancelClick } = todoFactory;
